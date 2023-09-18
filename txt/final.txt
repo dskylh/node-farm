@@ -1,2 +1,0 @@
-the content of read-this.txt
-appended text stuff
