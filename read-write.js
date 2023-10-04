@@ -1,4 +1,4 @@
-const fs = require("fs");
+import { readFile, writeFile } from "fs";
 // Syncrhonous doo doo way of doing things
 // const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
 // console.log(textIn);
@@ -9,20 +9,20 @@ const fs = require("fs");
 // fs.writeFileSync("./txt/output.txt", textOut);
 
 // Asyncrhonous chad way of doing things
-const asyncTextIn = fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
-  const asyncTextIn = fs.readFile(
+const asyncTextIn = readFile("./txt/start.txt", "utf-8", (err, data1) => {
+  const asyncTextIn = readFile(
     `./txt/${data1}.txt`,
     "utf-8",
     (err, data2) => {
       console.log(data2);
 
-      const asyncTextIn = fs.readFile(
+      const asyncTextIn = readFile(
         "./txt/appendix.txt",
         "utf-8",
         (err, data3) => {
           console.log(data3);
 
-          fs.writeFile(
+          writeFile(
             "./txt/final.txt",
             `${data2}\n${data3}`,
             "utf-8",

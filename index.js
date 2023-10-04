@@ -7,18 +7,9 @@ import replaceTemplate from "./modules/replaceTemplate";
 // this one executes after the create server because it is a top level function
 const data = readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
 const dataObject = JSON.parse(data);
-const overviewTemplate = readFileSync(
-  `${__dirname}/templates/template-overview.html`,
-  "utf-8"
-);
-const cardTemplate = readFileSync(
-  `${__dirname}/templates/template-card.html`,
-  "utf-8"
-);
-const productTemplate = readFileSync(
-  `${__dirname}/templates/template-product.html`,
-  "utf-8"
-);
+const overviewTemplate = readFileSync(`${__dirname}/templates/template-overview.html`, "utf-8");
+const cardTemplate = readFileSync(`${__dirname}/templates/template-card.html`, "utf-8");
+const productTemplate = readFileSync(`${__dirname}/templates/template-product.html`, "utf-8");
 const slugs = dataObject.map((el) => slugify(el.productName, { lower: true }));
 console.log(slugs);
 const server = createServer((req, res) => {
@@ -28,9 +19,7 @@ const server = createServer((req, res) => {
   // OVERVIEW
   if (pathname === "/overview" || pathname === "/") {
     res.writeHead(200, { "Content-type": "text/html" });
-    const cardsHTML = dataObject
-      .map((element) => replaceTemplate(cardTemplate, element))
-      .join("");
+    const cardsHTML = dataObject.map((element) => replaceTemplate(cardTemplate, element)).join("");
     const output = overviewTemplate.replace("{%PRODUCTCARDS%}", cardsHTML);
     res.end(output);
   }
